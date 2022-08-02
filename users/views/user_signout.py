@@ -8,6 +8,13 @@ from drf_yasg       import openapi
 
 
 class UserSignOutView(APIView):
+    """
+    Assignee: 김동규
+    
+    request body: refresh token
+    return: json
+    detail: 유저 로그아웃 기능입니다.
+    """
     
     permission_classes = [IsAuthenticated]
     
@@ -17,13 +24,22 @@ class UserSignOutView(APIView):
     )
     @swagger_auto_schema(request_body=post_params, responses={200: '유저가 로그아웃 되었습니다.'})
     def post(self, request):
+        """
+        POST: 유저 로그아웃 기능
+        """
         user = request.user
         
+        """
+        해당 유저의 리프레시 토큰 정보를 가져옵니다.
+        """
         try:
             refresh = RefreshToken(request.data['refesh_token'])
         except:
             return Response({'detail': '유효하지 않거나 만료된 토큰입니다.'}, status=400)
         
+        """
+        해당 유저의 발급된 모든 리프레시 토큰을 사용 제한합니다.
+        """
         for token in OutstandingToken.objects.filter(user_id=refresh['user_id']):
             BlacklistedToken.objects.get_or_create(token=token)
             
