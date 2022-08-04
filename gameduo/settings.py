@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = [
     'drf_yasg',
     'corsheaders',
     'rest_framework',
+    'background_task',
     'django_extensions',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
@@ -133,6 +134,30 @@ DATABASES = {
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }
+
+## LOCAL DOCKER REDIS ##
+CACHES = {  
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",     # Redis DB 1번 사용
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+## DEPLOY DOCKER REDIS ##
+'''
+CACHES = {  
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",         # Redis DB 1번 사용
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+'''
 
 ##CORS
 CORS_ORIGIN_ALLOW_ALL  = True
