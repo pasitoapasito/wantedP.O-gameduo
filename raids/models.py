@@ -17,7 +17,7 @@ class RaidHistory(TimeStampModel):
     status     = models.CharField(max_length=200, choices=STATUS_TYPES, default='in_progress')
     enter_time = models.DateTimeField(auto_now_add=True)
     end_time   = models.DateTimeField(null=True)
-    time_limit = models.PositiveIntegerField(default=180)
+    time_limit = models.PositiveIntegerField()
     
     def __str__(self):
         return self.users.nickname
