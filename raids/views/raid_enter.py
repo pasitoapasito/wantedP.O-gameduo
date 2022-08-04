@@ -48,16 +48,11 @@ class BossRaidEnterView(APIView):
             return Response({'msg': '다른 유저가 이미 보스레이드에 입장했습니다.', 'is_entered': False}, status=202)
         
         serializer = BossRaidEnterSerializer(data=request.data)
+        
         if serializer.is_valid():
             serializer.save(users=user)
             RaidTime.check_raid_time(serializer.data['id'])
             queue.clear()
-            return Response(
-                {
-                    'msg': '보스레이드에 입장했습니다.', 'is_entered': True,\
-                    'raid_history_id': serializer.data['id'], 'nickname': serializer.data['nickname']
-                },
-                status=201
-            )
+            return Response({'msg': '보스레이드에 입장했습니다.', 'is_entered': True, 'result': serializer.data}, status=201)
         queue.clear()
         return Response(serializer.errors, status=400)
