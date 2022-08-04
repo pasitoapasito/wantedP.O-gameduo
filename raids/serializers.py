@@ -103,3 +103,26 @@ class BossRaidEndSerializer(ModelSerializer):
             'enter_time': {'read_only': True},
             'time_limit': {'read_only': True},
         }
+        
+        
+class BossRaidStatusSerializer(ModelSerializer):
+    user_id = serializers.SerializerMethodField()
+    
+    def get_user_id(self, obj: RaidHistory) -> int:
+        return obj.users.id
+    
+    class Meta:
+        model  = RaidHistory
+        fields = [
+            'id', 'user_id', 'status', 'level', 'score', 'enter_time',\
+            'time_limit'
+        ]
+        extra_kwargs = {
+            'id': {'read_only': True}
+        }
+        
+
+class BossRaidStatusSchema(serializers.Serializer):
+    msg             = serializers.CharField(max_length=200)
+    can_enter       = serializers.BooleanField()
+    entered_user_id = serializers.IntegerField(allow_null=True)
