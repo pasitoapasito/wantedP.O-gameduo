@@ -6,6 +6,7 @@ from rest_framework                       import serializers
 from rest_framework.serializers           import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens      import OutstandingToken, BlacklistedToken
+from raids.models import RaidHistory
 
 from users.models import User
 
@@ -114,3 +115,32 @@ class UserSignInSchema(Serializer):
     
     refresh = serializers.CharField(max_length=255)
     access  = serializers.CharField(max_length=255)
+    
+    
+class UserSearchSerializer(ModelSerializer):
+    enter_time = serializers.SerializerMethodField()
+    end_time   = serializers.SerializerMethodField()
+    
+    def get_enter_time(self, obj: RaidHistory) -> str:
+        return (obj.enter_time).strftime('%Y-%m-%d %H:%M:%S')
+
+    def get_end_time(self, obj: RaidHistory) -> str:
+        if obj.end_time:
+            return (obj.end_time).strftime('%Y-%m-%d %H:%M:%S')
+        return None
+    
+    class Meta:
+        model  = RaidHistory
+        fields = [
+            'id', 'score', 'level', 'enter_time', 'end_time', 'time_limit',\
+            'status'
+        ]
+        extra_kwargs = {
+            'id': {'read_only': True}
+        }
+        
+
+class UserSearchSchema(serializers.Serializer):
+    nickname    = serializers.CharField(max_length=100)
+    total_score = serializers.IntegerField()
+    histories   = UserSearchSerializer(many=True)

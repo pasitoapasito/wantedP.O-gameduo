@@ -3,6 +3,7 @@ from django.urls import path
 from users.views.user_signup  import UserSignUpView
 from users.views.user_signin  import UserSignInView
 from users.views.user_signout import UserSignOutView
+from users.views.user_search  import UserSearchView
 
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -22,4 +23,11 @@ detail: 리프레시 토큰으로 다시 로그인을 시도하면 액세스 토
 """
 urlpatterns += [
     path('/token/refresh', TokenRefreshView.as_view()),
+]
+
+"""
+유저 조회 url patterns
+"""
+urlpatterns += [
+    path('/search/<str:nickname>', UserSearchView.as_view()),
 ]
