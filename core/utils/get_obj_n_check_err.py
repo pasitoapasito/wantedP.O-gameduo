@@ -5,6 +5,15 @@ from raids.models import RaidHistory
 
 
 class GetRaidHistory:
+    """
+    Assignee: 김동규
+    
+    param: raid_history_id, user
+    return: obj, err
+    detail:
+      - 보스레이드 id를 통해 보스레이드 객체(정보)의 존재여부 확인
+      - 보스레이드 객체의 유저정보와 API를 호출한 유저의 정보를 대조
+    """
     
     def get_raid_n_check_error(raid_history_id: int, user: User) -> Tuple[Any, str]:
         try:
@@ -20,6 +29,16 @@ class GetRaidHistory:
     
 
 class GetUserHistory:
+    """
+    Assignee: 김동규
+    
+    param: nickname, offset, limit
+    return: obj(raid histories), obj(user), err
+    detail:
+      - 유저 nickname을 통해 유저 객체(정보)의 존재여부 확인
+      - offset, limit의 크기만큼 보스레이드 히스토리 내역을 반환함
+      - 보스레이드 히스토리 내역은 최신순으로 정렬하여 반환함
+    """
     
     def get_user_history_n_check_error(nickname: str, offset: int, limit: int) -> Tuple[Any, Any, str]:
         try:

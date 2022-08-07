@@ -5,9 +5,14 @@ from django.core.cache import cache
 
 class RedisCache:
     """
-    CACHE SETTINGS
+    Assignee: 김동규
+    
+    detail:
+      > Cache Settings
+        * 보스레이드 정보를 요청하여 레디스에 캐싱(저장)함
+        * 캐싱정보를 받아오지 못하거나 캐싱정보가 부족할 경우 에러 메세지를 출력함
 
-    * 보스레이드 요청 데이터 반환 형태
+      > 보스레이드 요청 데이터 반환 형태(json)
         {
           'bossRaids': [
             {

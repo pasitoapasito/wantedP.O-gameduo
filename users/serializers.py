@@ -118,6 +118,13 @@ class UserSignInSchema(Serializer):
     
     
 class UserSearchSerializer(ModelSerializer):
+    """
+    Assignee: 김동규
+    
+    detail: 유저조회 시리얼라이저[GET 기능 유효성 검사]
+    model: RaidHistory
+    """
+    
     enter_time = serializers.SerializerMethodField()
     end_time   = serializers.SerializerMethodField()
     
@@ -141,6 +148,12 @@ class UserSearchSerializer(ModelSerializer):
         
 
 class UserSearchSchema(serializers.Serializer):
+    """
+    Assignee: 김동규
+    
+    detail: 유저조회 스키마 시리얼라이저[only used for swagger]
+    """
+    
     nickname    = serializers.CharField(max_length=100)
     total_score = serializers.IntegerField()
     histories   = UserSearchSerializer(many=True)
