@@ -36,6 +36,13 @@ class UserSearchView(APIView):
     @swagger_auto_schema(responses={200: UserSearchSchema}, manual_parameters=[nickname, offset, limit])
     def get(self, request, nickname):
         """
+<<<<<<< HEAD
+=======
+        GET: 유저정보 조회 기능
+        """
+        
+        """
+>>>>>>> f9a4ee8 (modify: 보스레이드 입장, 종료, 상태조회 및 유저조회 기능 주석설명 수정 (#16))
         유저정보 조회 데이터 개수 선택
         """
         offset = int(request.GET.get('offset', 0))

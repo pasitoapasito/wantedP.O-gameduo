@@ -26,12 +26,12 @@ class BossRaidEnterSerializer(ModelSerializer):
         
     def get_enter_time(self, obj: RaidHistory) -> str:
         return (obj.enter_time).strftime('%Y-%m-%d %H:%M:%S')
-    
-    """
-    보스레이드 히스토리 생성
-      - 보스레이드의 캐싱정보 활용(제한시간)
-    """    
+       
     def create(self, validated_data) -> object:
+        """
+        보스레이드 히스토리 생성
+        - 보스레이드의 캐싱정보 활용(제한시간)
+        """ 
         time_limit = cache.get('limit_time')
         if not time_limit:
             raise serializers.ValidationError('detail: 보스레이드의 정보를 찾지 못했습니다.')
@@ -39,12 +39,12 @@ class BossRaidEnterSerializer(ModelSerializer):
         raid = RaidHistory.objects\
                           .create(**validated_data, time_limit=time_limit)
         return raid
-    
-    """
-    보스레이드 히스토리 유효성 검사(컬럼 레벨)
-      - 보스레이드 캐싱정보에 존재하는 레벨이 아니면 에러 반환
-    """ 
+     
     def validate_level(self, value) -> int:
+        """
+        보스레이드 히스토리 유효성 검사(컬럼 레벨)
+        - 보스레이드 캐싱정보에 존재하는 레벨이 아니면 에러 반환
+        """
         if not cache.get(f'level-{value}'):
             raise serializers.ValidationError('detail: 보스레이드의 유효한 레벨이 아닙니다.')
         return value
@@ -83,15 +83,17 @@ class BossRaidEndSerializer(ModelSerializer):
     def get_end_time(self, obj: RaidHistory) -> str:
         return (obj.end_time).strftime('%Y-%m-%d %H:%M:%S')
     
-    """
-    보스레이드 종료
-      - 보스레이드 종료 필수 입력값 확인(레벨정보)
-      - 보스레이드 캐싱정보 활용(제한시간) 
-      - 보스레이드 레벨 유효성 검사
-      - 보스레이드 진행여부 확인(이미 종료된 보스레이드는 종료할 수 없음)
-    """
     @transaction.atomic()
     def update(self, instance: RaidHistory, validated_data) -> object:
+        """
+        보스레이드 종료(데이터 수정)
+          - 유효성 검사
+            * 보스레이드 종료 필수 입력값 확인(레벨정보)
+            * 보스레이드 캐싱정보 확인 및 활용(제한시간) 
+            * 보스레이드 레벨 유효성 확인
+            * 보스레이드 진행여부 확인(이미 종료된 보스레이드는 종료할 수 없음)
+        """
+        
         """
         필수 입력값(레벨정보) 유효성 검사 
         """

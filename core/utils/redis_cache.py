@@ -36,6 +36,9 @@ class RedisCache:
         }
     """    
     def set_raid_data_in_cache():
+        """
+        보스레이드 정보 캐싱(저장)
+        """
         URL          = 'https://dmpilf5svl7rv.cloudfront.net'
         ASSIGNMENT   = 'assignment'
         BACKEND      = 'backend'
