@@ -36,7 +36,7 @@ class UserSearchView(APIView):
     @swagger_auto_schema(responses={200: UserSearchSchema}, manual_parameters=[nickname, offset, limit])
     def get(self, request, nickname):
         """
-        조회하는 유저정보의 개수 선택가능
+        유저정보 조회 데이터 개수 선택
         """
         offset = int(request.GET.get('offset', 0))
         limit  = int(request.GET.get('limit', 10))
@@ -49,7 +49,7 @@ class UserSearchView(APIView):
             return Response({'detail': err}, status=400)
         
         """
-        제공 데이터
+        반환 데이터
           - 유저 닉네임
           - 유저 보스레이드 총점
           - 유저 히스토리 내역

@@ -12,7 +12,7 @@ class GetRaid:
     
     return: obj, err
     detail:
-      - 현재 진행중인 보스레이드가 있는지 확인
+      - 현재 진행중인 보스레이드의 존재여부 확인
       - Redis의 캐싱정보를 활용하여 보스레이드 진행여부 판단(제한시간)
     """
     
@@ -26,6 +26,9 @@ class GetRaid:
         if not limit_time:
             return None, '보스레이드의 정보를 찾지 못했습니다.'
         
+        """
+        입장 시점으로부터 제한시간을 초과하지 않은 보스레이드를 필터링함(현재 진행중인 보스레이드)
+        """
         raid = history.filter(
             enter_time__gte=now-timedelta(seconds=int(limit_time))
         )
@@ -38,7 +41,7 @@ class RaidTime:
     
     print: 보스레이드 강제종료 안내
     detail:
-      - 보스레이드의 제한시간을 초과하면 보스레이드를 강제 종료함
+      - 보스레이드의 제한시간을 초과하면 보스레이드를 강제 종료함(score: 0)
       - 보스레이드 히스토리의 status를 실패로 변경하고, end time을 제한시간 초과시점으로 적용
     """
     

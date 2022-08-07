@@ -11,7 +11,7 @@ class RedisQueue:
         * 요청 데이터는 대기열의 왼쪽으로 하나씩 넣어줌
         * 대기열의 오른쪽에서 가장 빠르게 요청한 유저정보를 추출함
         
-      > cf) Redis queue(List) info
+      > cf: Redis queue(List) info
         * Redis Lists are an ordered list, First In First Out Queue.
         * Redis List pushing new elements on the head(on the left) of the list.
         * Redis List popping first element on the tail(on the right) of the list.
