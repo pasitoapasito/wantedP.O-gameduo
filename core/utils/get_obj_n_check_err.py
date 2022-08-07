@@ -16,6 +16,9 @@ class GetRaidHistory:
     """
     
     def get_raid_n_check_error(raid_history_id: int, user: User) -> Tuple[Any, str]:
+        """
+        보스레이드 객체/에러 확인
+        """
         try:
             raid = RaidHistory.objects\
                               .get(id=raid_history_id)
@@ -41,6 +44,9 @@ class GetUserHistory:
     """
     
     def get_user_history_n_check_error(nickname: str, offset: int, limit: int) -> Tuple[Any, Any, str]:
+        """
+        유저 객체/에러 확인 및 유저 히스토리 조회 
+        """
         try:
             user = User.objects\
                        .get(nickname=nickname)

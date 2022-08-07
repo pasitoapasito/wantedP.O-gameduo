@@ -36,6 +36,9 @@ class BossRaidEndView(APIView):
         manual_parameters=[raid_id]
     )
     def patch(self, request, raid_history_id):
+        """
+        PATCH: 보스레이드 종료 기능
+        """
         user = request.user
         
         """

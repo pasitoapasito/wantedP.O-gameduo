@@ -26,6 +26,9 @@ class BossRaidStatusView(APIView):
     
     @swagger_auto_schema(responses={200: BossRaidStatusSchema})
     def get(self, request):
+        """
+        GET: 보스레이드 상태조회 기능
+        """
         
         """
         보스레이드 정보를 Redis에 캐싱(저장)

@@ -24,34 +24,33 @@ class RedisQueue:
         """
         self.key = name
         self.rq  = redis.Redis(**redis_kwargs)
-    
-    """
-    큐(대기열) 크기 확인
-    """    
+       
     def qsize(self):
+        """
+        큐(대기열) 크기 확인
+        """ 
         return self.rq.llen(self.key)
     
-    """
-    큐의 데이터 존재여부 확인
-    """
     def is_empty(self):
+        """
+        큐의 데이터 존재여부 확인
+        """
         return self.qsize() == 0
     
-    """
-    데이터 입력(left push)
-    """
     def put(self, element):
+        """
+        데이터 입력(left push)
+        """
         self.rq.lpush(self.key, element)
-    
-    """
-    데이터 추출(right pop)
-    """    
+      
     def get(self, block=False, timeout=None):
         """
-        blocking right pop
-          - 큐(대기열)에 데이터가 존재하지 않으면, pop을 제한하고 데이터가 입력될 때까지 timeout만큼 대기 후 데이터 추출
-          - element 인덱싱 0번: queue key
-          - element 인덱싱 1번: queue data
+        데이터 추출(right pop)
+        
+        - blocking right pop
+          * 큐(대기열)에 데이터가 존재하지 않으면, pop을 제한하고 데이터가 입력될 때까지 timeout만큼 대기 후 데이터 추출
+          * element 인덱싱 0번: queue key
+          * element 인덱싱 1번: queue data
         """
         if block:
             element = self.rq.brpop(self.key, timeout=timeout)
@@ -60,9 +59,9 @@ class RedisQueue:
             element = self.rq.rpop(self.key)
         
         return element
-    
-    """
-    대기열에 존재하는 모든 데이터 삭제
-    """
+
     def clear(self):
+        """
+        대기열에 존재하는 모든 데이터 삭제
+        """
         self.rq.flushall()

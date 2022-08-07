@@ -17,6 +17,9 @@ class GetRaid:
     """
     
     def get_raid_in_progress() -> Tuple[Any, str]:
+        """
+        진행중인 보스레이드의 존재여부 확인
+        """
         history = RaidHistory.objects\
                              .filter(status='in_progress', end_time=None)
         
@@ -49,6 +52,9 @@ class RaidTime:
     
     @background(schedule=TIME)
     def check_raid_time(RAID: int):
+        """
+        제한시간을 초과한 보스레이드 강제 종료
+        """
         raid = RaidHistory.objects\
                           .get(id=RAID)
         

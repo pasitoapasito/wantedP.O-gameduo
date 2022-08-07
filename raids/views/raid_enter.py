@@ -35,6 +35,9 @@ class BossRaidEnterView(APIView):
 
     @swagger_auto_schema(request_body=BossRaidEnterSerializer, responses={201: BossRaidEnterSerializer})
     def post(self, request):
+        """
+        POST: 보스레이드 입장(시작) 기능
+        """
         user = request.user
         
         """
