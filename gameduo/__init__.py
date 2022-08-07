@@ -9,10 +9,14 @@ application = get_wsgi_application()
 
 
 """
-CACHE SETTINGS
-- 장고 서버가 시작할 때 보스레이드 정보를 cache에 저장합니다.
+Assignee: 김동규
+    
+detail:
+  > Cache Settings
+    * 장고 서버가 시작할 때 보스레이드 정보를 Redis cache에 저장함
+    * 캐싱정보를 받아오지 못하거나 캐싱정보가 부족할 경우 에러 메세지를 출력함
 
-* 보스레이드 요청 데이터 반환 형태
+  > 보스레이드 요청 데이터 반환 형태(json)
     {
       'bossRaids': [
         {

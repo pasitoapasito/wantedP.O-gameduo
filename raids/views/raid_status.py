@@ -10,14 +10,31 @@ from raids.serializers           import BossRaidStatusSerializer, BossRaidStatus
 
 
 class BossRaidStatusView(APIView):
+    """
+    Assignee: 김동규
+    
+    return: json
+    detail:
+      - 인증/인가에 통과한 유저는 보스레이드의 상태정보를 조회할 수 있습니다. (GET: 보스레이드 상태조회 기능)
+        > 보스레이드 상태조회
+          * 이미 진행중인 보스레이드가 있으면, 보스레이드에 입장한 유저정보(id)와 입장불가 정보(can enter: False)를 함께 반환함
+          * 현재 진행중인 보스레이드가 없다면, 보스레이드에 입장한 유저정보(null)와 입장가능 정보(can enter: True)를 함께 반환함
+          * 보스레이드의 (캐싱)정보가 존재하지 않으면 에러를 반환합니다.
+    """
     
     permission_classes = [IsAuthenticated]
     
     @swagger_auto_schema(responses={200: BossRaidStatusSchema})
     def get(self, request):
         
+        """
+        보스레이드 정보를 Redis에 캐싱(저장)
+        """
         RedisCache.set_raid_data_in_cache()
         
+        """
+        현재 진행중인 보스레이드의 존재여부 확인
+        """
         raid, err = GetRaid.get_raid_in_progress()
         if err:
             return Response({'detail': err}, status=400)
