@@ -26,7 +26,7 @@ class GetRaidHistory:
             return None, f'보스레이드 {raid_history_id}(id)는 존재하지 않습니다.'
         
         if not user.nickname == raid.users.nickname:
-            return None, f'다른 유저의 보스레이드입니다.'
+            return None, '다른 유저의 보스레이드입니다.'
         
         return raid, None
     
