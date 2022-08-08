@@ -53,7 +53,7 @@ class UserSearchView(APIView):
             return Response({'detail': err}, status=400)
         
         """
-        반환 데이터
+        최종 반환 데이터
           - 유저 닉네임
           - 유저 보스레이드 총점
           - 유저 히스토리 내역

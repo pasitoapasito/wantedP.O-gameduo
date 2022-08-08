@@ -6,7 +6,9 @@ from drf_yasg.utils import swagger_auto_schema
 
 from core.utils.check_obj_status import GetRaid
 from core.utils.redis_cache      import RedisCache
-from raids.serializers           import BossRaidStatusSerializer, BossRaidStatusSchema
+from core.utils.decorator        import query_debugger
+
+from raids.serializers import BossRaidStatusSerializer, BossRaidStatusSchema
 
 
 class BossRaidStatusView(APIView):
@@ -24,6 +26,7 @@ class BossRaidStatusView(APIView):
     
     permission_classes = [IsAuthenticated]
     
+    @query_debugger
     @swagger_auto_schema(responses={200: BossRaidStatusSchema})
     def get(self, request):
         """
