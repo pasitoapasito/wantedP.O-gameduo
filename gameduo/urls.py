@@ -21,7 +21,8 @@ schema_view = get_schema_view(
 Django app url patterns
 """
 urlpatterns = [
-
+    path('api/users', include('users.urls')),
+    path('api/raids', include('raids.urls')),
 ]
 
 """
