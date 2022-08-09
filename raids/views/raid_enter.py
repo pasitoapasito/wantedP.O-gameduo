@@ -8,8 +8,10 @@ from core.utils.check_obj_status import GetRaid, RaidTime
 from core.utils.redis_queue      import RedisQueue
 from core.utils.redis_cache      import RedisCache
 
-from drf_yasg.utils    import swagger_auto_schema
+from drf_yasg.utils import swagger_auto_schema
+
 from raids.serializers import BossRaidEnterSerializer
+from gameduo.settings  import REDIS_HOSTNAME
 
 
 class BossRaidEnterView(APIView):
@@ -64,7 +66,7 @@ class BossRaidEnterView(APIView):
         동시성 문제를 해결하기 위해 Redis queue를 활용했습니다.
         단, 배포 시 RedisQueue의 host를 변경해야 합니다.
         """
-        queue = RedisQueue('queue', host='localhost', port=6379, db=2)
+        queue = RedisQueue('queue', host=f'{REDIS_HOSTNAME}', port=6379, db=2)
         
         """
         유저 대기열(queue)을 만들고, 대기열의 맨 앞에 있는 유저를 보스레이드에 입장시킵니다.

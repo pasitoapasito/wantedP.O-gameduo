@@ -135,29 +135,18 @@ DATABASES = {
     }
 }
 
-## LOCAL DOCKER REDIS ##
-CACHES = {  
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",     # Redis DB 1번 사용
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
+## DOCKER REDIS ##
+REDIS_HOSTNAME = get_env_variable('REDIS_HOSTNAME')
 
-## DEPLOY DOCKER REDIS ##
-'''
 CACHES = {  
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis:6379/1",         # Redis DB 1번 사용
+        "LOCATION": f"redis://{REDIS_HOSTNAME}:6379/1",     # Redis DB 1번 사용
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     }
 }
-'''
 
 ##CORS
 CORS_ORIGIN_ALLOW_ALL  = True
