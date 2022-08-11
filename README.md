@@ -297,5 +297,266 @@
   #### 프로젝트 진행사항을 칸반보드와 이슈티켓으로 관리했습니다.
   <img width="1000px" alt="스크린샷 2022-08-04 09 10 46" src="https://user-images.githubusercontent.com/89829943/184055328-0252f2eb-676a-4211-9153-5165b8982f56.png">
 
+<br>
+<hr>
 
+## Etc
 
+> **Guides**
+- #### ⚙️ 프로젝트 설치방법
+  #### ```✔️ 로컬 개발 및 테스트용```
+  
+  1. 해당 프로젝트를 clone하고, 프로젝트 폴더로 이동합니다.
+  <br>
+  
+   ```
+   git clone https://github.com/pasitoapasito/wantedP.O-gameduo.git
+   cd project directory
+   ```
+  
+  2. 가상환경을 만들고, 프로젝트에 필요한 python package를 다운받습니다.
+  <br>
+  
+  ```
+  conda create --name project-name python=3.9
+  conda activate project-name
+  pip install -r requirements.txt
+  ```
+  
+  3. manage.py 파일과 동일한 위치에서 환경설정 파일을 만듭니다.
+  <br>
+  
+  ```
+  ex) .env file 
+  
+  ## general ##
+  DEBUG         = True
+  ALLOWED_HOSTS = ALLOWED_HOSTS
+  SECRET_KEY    = SECRET_KEY
+
+  ## Docker DB ##
+  MYSQL_TCP_PORT      = '3306'
+  MYSQL_DATABASE      = MYSQL_DATABASE
+  MYSQL_ROOT_PASSWORD = MYSQL_ROOT_PASSWORD
+  MYSQL_USER          = MYSQL_USER
+  MYSQL_PASSWORD      = MYSQL_PASSWORD
+
+  ## AWS RDS ##
+  RDS_HOSTNAME = RDS_HOSTNAME
+  RDS_DB_NAME  = RDS_DB_NAME
+  RDS_USERNAME = RDS_USERNAME
+  RDS_PASSWORD = RDS_PASSWORD
+  RDS_PORT     = '3306'
+  
+  ## Docker Redis ##
+  REDIS_HOSTNAME = 'localhost'
+  ```
+  
+  4. project-name/settings.py에서 DB설정을 적절하게 변경합니다.
+  <br>
+  
+  ```
+  Docker로 DB를 구축하는 경우 or AWS RDS로 DB를 구축하는 경우 등
+  다양한 방법으로 DB를 구축하는 경우에 맞게 DB 설정을 변경합니다.
+  
+  
+  ## Docker DB ##
+  '''
+  DATABASES = {
+      'default': {
+          'ENGINE'  : 'django.db.backends.mysql',
+          'NAME'    : get_env_variable('MYSQL_DATABASE'),
+          'USER'    : 'root',
+          'PASSWORD': get_env_variable('MYSQL_ROOT_PASSWORD'),
+          'HOST'    : 'localhost',
+          'PORT'    : get_env_variable('MYSQL_TCP_PORT'),
+      }
+  }
+  '''
+  
+  ## AWS RDS ##
+  DATABASES = {
+      'default': {
+          'ENGINE'  : 'django.db.backends.mysql',
+          'NAME'    : get_env_variable('RDS_DB_NAME'),
+          'USER'    : get_env_variable('RDS_USERNAME'),
+          'PASSWORD': get_env_variable('RDS_PASSWORD'),
+          'HOST'    : get_env_variable('RDS_HOSTNAME'),
+          'PORT'    : get_env_variable('RDS_PORT'),
+          'OPTIONS' : {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+      }
+  }
+  ```
+  
+  5. DB의 Table 구조를 최신 modeling에 맞게 설정합니다.
+  <br>
+  
+  ```
+  python manage.py migrate
+  ```
+  
+  6. 개발용 서버와 백그라운드 태스크를 실행합니다.
+  <br>
+  
+  ```
+  > 참고: 각각 다른 터미널에서 실행해야 합니다.
+  
+  python manage.py runserver 0:8000 (장고 개발서버)
+  python manage.py process_tasks &  (장고 백그라운드 태스트)
+  ```
+
+  #### ```✔️ 배포용```
+  1. 배포용 서버에서 해당 프로젝트를 clone하고, 프로젝트 폴더로 이동합니다.
+  <br>
+  
+  ```
+  git clone https://github.com/pasitoapasito/wantedP.O-gameduo.git
+  cd project directory
+  ```
+  
+  2. manage.py 파일과 동일한 위치에서 도커 환경설정 파일을 만듭니다.
+  <br>
+  
+  ```
+  ex) .env file 
+  
+  ## general ##
+  DEBUG         = True
+  ALLOWED_HOSTS = ALLOWED_HOSTS
+  SECRET_KEY    = SECRET_KEY
+
+  ## Docker DB ##
+  MYSQL_TCP_PORT      = '3306'
+  MYSQL_DATABASE      = MYSQL_DATABASE
+  MYSQL_ROOT_PASSWORD = MYSQL_ROOT_PASSWORD
+  MYSQL_USER          = MYSQL_USER
+  MYSQL_PASSWORD      = MYSQL_PASSWORD
+
+  ## AWS RDS ##
+  RDS_HOSTNAME = RDS_HOSTNAME
+  RDS_DB_NAME  = RDS_DB_NAME
+  RDS_USERNAME = RDS_USERNAME
+  RDS_PASSWORD = RDS_PASSWORD
+  RDS_PORT     = '3306'
+  
+  ## Docker Redis ##
+  REDIS_HOSTNAME = 'redis'
+  ```
+  
+  3. project-name/settings.py에서 DB설정을 적절하게 변경합니다.
+  <br>
+  
+  ```
+  Docker로 DB를 구축하는 경우 or AWS RDS로 DB를 구축하는 경우 등
+  다양한 방법으로 DB를 구축하는 경우에 맞게 DB 설정을 변경합니다.
+  
+  
+  ## Docker DB ##
+  DATABASES = {
+      'default': {
+          'ENGINE'  : 'django.db.backends.mysql',
+          'NAME'    : get_env_variable('MYSQL_DATABASE'),
+          'USER'    : 'root',
+          'PASSWORD': get_env_variable('MYSQL_ROOT_PASSWORD'),
+          'HOST'    : 'db',
+          'PORT'    : get_env_variable('MYSQL_TCP_PORT'),
+      }
+  }
+  
+  '''
+  ## AWS RDS ##
+  DATABASES = {
+      'default': {
+          'ENGINE'  : 'django..backends.mysql',
+          'NAME'    : get_env_variable('RDS_DB_NAME'),
+          'USER'    : get_env_variable('RDS_USERNAME'),
+          'PASSWORD': get_env_variable('RDS_PASSWORD'),
+          'HOST'    : get_env_variable('RDS_HOSTNAME'),
+          'PORT'    : get_env_variable('RDS_PORT'),
+          'OPTIONS' : {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+      }
+  }
+  '''
+  ```
+  
+  4. docker-compose 명령을 사용하여 Nginx, Redis, DB, Django 컨테이너를 실행시킵니다.
+  <br>
+  
+  ```
+  docker-compose -f ./docker-compose.yml up (-d)
+  ```
+
+<br>
+
+> **Structure**
+- #### 🛠 프로젝트 폴더구조
+  ```
+  📦cache
+  ┗ 📜dump.rdb
+  📦config
+  ┗ 📂nginx
+  ┃ ┗ 📜nginx.conf
+  📦core
+  ┣ 📂migrations
+  ┃ ┗ 📜__init__.py
+  ┣ 📂utils
+  ┃ ┣ 📜check_obj_status.py
+  ┃ ┣ 📜decorator.py
+  ┃ ┣ 📜get_obj_n_check_err.py
+  ┃ ┣ 📜redis_cache.py
+  ┃ ┣ 📜redis_queue.py
+  ┃ ┗ 📜redis_ranking.py
+  ┣ 📜__init__.py
+  ┣ 📜admin.py
+  ┣ 📜apps.py
+  ┣ 📜models.py
+  ┣ 📜tests.py
+  ┗ 📜views.py
+  📦gameduo
+  ┣ 📜__init__.py
+  ┣ 📜asgi.py
+  ┣ 📜settings.py
+  ┣ 📜urls.py
+  ┗ 📜wsgi.py
+  📦raids
+  ┣ 📂migrations
+  ┃ ┣ 📜0001_initial.py
+  ┃ ┣ 📜0002_alter_raidhistory_time_limit.py
+  ┃ ┗ 📜__init__.py
+  ┣ 📂views
+  ┃ ┣ 📜raid_end.py
+  ┃ ┣ 📜raid_enter.py
+  ┃ ┣ 📜raid_ranking.py
+  ┃ ┗ 📜raid_status.py
+  ┣ 📜__init__.py
+  ┣ 📜admin.py
+  ┣ 📜apps.py
+  ┣ 📜models.py
+  ┣ 📜serializers.py
+  ┣ 📜tests.py
+  ┗ 📜urls.py
+  📦users
+  ┣ 📂migrations
+  ┃ ┣ 📜0001_initial.py
+  ┃ ┗ 📜__init__.py
+  ┣ 📂views
+  ┃ ┣ 📜user_search.py
+  ┃ ┣ 📜user_signin.py
+  ┃ ┣ 📜user_signout.py
+  ┃ ┗ 📜user_signup.py
+  ┣ 📜__init__.py
+  ┣ 📜admin.py
+  ┣ 📜apps.py
+  ┣ 📜models.py
+  ┣ 📜serializers.py
+  ┣ 📜tests.py
+  ┗ 📜urls.py
+  ┣ 📜.env
+  ┣ 📜.gitignore
+  ┣ 📜docker-compose.yml
+  ┣ 📜Dockerfile
+  ┣ 📜manage.py
+  ┣ 📜README.md
+  ┗ 📜requirements.txt
+  ```
+  
