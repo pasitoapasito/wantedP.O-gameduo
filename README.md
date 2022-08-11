@@ -208,7 +208,7 @@
       ```
     - 보스레이드 랭킹조회
       ```
-      > 인증/인가에 통과한 사용자는 보스레이드 랭킹정보를 조회할 수 있습니다.
+      > 인증/인가에 통과한 사용자는 보스레이드의 랭킹정보를 조회할 수 있습니다.
       
       * 보스레이드의 상위권 TOP10 랭킹정보를 조회합니다.
       * 보스레이드 랭킹조회 요청 시, 사용자의 기록이 랭킹 순위권에 존재하는지 확인합니다.
@@ -239,4 +239,62 @@
   |8|보스레이드 상태조회|GET|api/raids/status|
   |9|보스레이드 랭킹조회|GET|api/raids/ranking|
  
+- #### ✨ Swagger UI
+  #### ```✔️ 유저 회원가입``` 
+  <img width="1000px" alt="스크린샷 2022-07-29 11 13 53" src="https://user-images.githubusercontent.com/89829943/181668672-d319ebc3-a0bf-4b0a-8163-ee0a21598b1b.png">
+  <img width="1000px" alt="스크린샷 2022-07-29 11 14 16" src="https://user-images.githubusercontent.com/89829943/181668695-175afa5d-5223-4d98-a562-c09333658c4d.png">
+  
+  #### ```✔️ 유저 로그인```
+  <img width="1000px" alt="스크린샷 2022-07-29 11 17 19" src="https://user-images.githubusercontent.com/89829943/181668976-e847610d-5dd0-4fab-a5fc-c5305b1d90ea.png">
+  <img width="1000px" alt="스크린샷 2022-07-29 11 17 35" src="https://user-images.githubusercontent.com/89829943/181668993-bbab822b-1c93-49fa-a5d8-b6942beede35.png">
+  
+  #### ```✔️ 유저 로그아웃```
+  <img width="1000px" alt="스크린샷 2022-07-29 11 21 01" src="https://user-images.githubusercontent.com/89829943/181669401-7540c353-7cdf-41ce-865a-2b3951a0a28b.png">
+  <img width="1000px" alt="스크린샷 2022-07-29 11 19 44" src="https://user-images.githubusercontent.com/89829943/181669231-9b567817-0029-4f72-b16e-8578a9e2c381.png">
+
+  #### ```✔️ 유저 토큰 재발급```
+  <img width="1000px" alt="스크린샷 2022-07-29 11 22 49" src="https://user-images.githubusercontent.com/89829943/181669666-dc0f3a3c-e93c-4606-bd80-536e445f639a.png">
+  <img width="1000px" alt="스크린샷 2022-07-29 11 23 06" src="https://user-images.githubusercontent.com/89829943/181669682-b09f3740-e2b1-439c-99bf-ebd5abd633bc.png">
+
+  #### ```✔️ 유저 정보조회```
+  <img width="1000px" alt="스크린샷 2022-08-11 11 11 13" src="https://user-images.githubusercontent.com/89829943/184053596-43b06a1d-170e-4d75-8616-6d9f16d2b75f.png">
+  <img width="1000px" alt="스크린샷 2022-08-11 11 12 01" src="https://user-images.githubusercontent.com/89829943/184053622-28e64be0-247e-4b21-9049-4e454f60c906.png">
+
+  #### ```✔️ 보스레이드 입장```
+  <img width="1000px" alt="스크린샷 2022-08-11 11 13 55" src="https://user-images.githubusercontent.com/89829943/184053761-10fcd951-4946-406d-80fc-3aa7184d8ab0.png">
+  <img width="1000px" alt="스크린샷 2022-08-11 11 14 15" src="https://user-images.githubusercontent.com/89829943/184053780-38ae62bc-94f1-4ab1-83ec-e08d76a6a6c1.png">
+
+  #### ```✔️ 보스레이드 종료```
+  <img width="1000px" alt="스크린샷 2022-08-11 11 15 35" src="https://user-images.githubusercontent.com/89829943/184053918-e5208ee7-47cb-4849-9000-ef1c2dfe54a2.png">
+  <img width="1000px" alt="스크린샷 2022-08-11 11 16 04" src="https://user-images.githubusercontent.com/89829943/184053925-ba623c3d-3f37-46d9-8c8e-a5382da44e24.png">
+
+  #### ```✔️ 보스레이드 상태조회```
+  <img width="1000px" alt="스크린샷 2022-08-11 11 18 04" src="https://user-images.githubusercontent.com/89829943/184054111-d78f76b4-103c-457d-a44e-b31a62cb15ab.png">
+  <img width="1000px" alt="스크린샷 2022-08-11 11 18 32" src="https://user-images.githubusercontent.com/89829943/184054129-9f2ea3e4-12a0-46aa-8860-dc0938be97c2.png">
+
+  #### ```✔️ 보스레이드 랭킹조회```
+  <img width="1000px" alt="스크린샷 2022-08-11 11 26 48" src="https://user-images.githubusercontent.com/89829943/184054957-224bef9d-3602-4478-8b56-cfb3ca908bb8.png">
+  <img width="1000px" alt="스크린샷 2022-08-11 11 27 05" src="https://user-images.githubusercontent.com/89829943/184054967-3d342a31-1d08-475f-8893-1377fa38b220.png">
+
+<br> 
+
+> **Deploy**
+- #### 🏖 프로젝트 배포
+  #### Docker, Nginx, Gunicorn을 사용하여 AWS EC2 서버에 배포했으며, 비용 등의 이유로 현재는 배포를 중단했습니다.
+  
+  
+<br> 
+
+> **Test**
+- #### 🚦 테스트코드 작성
+  #### 현재 테스트코드 작성중
+  
+<br> 
+
+> **Issue**
+- #### ⏰ 프로젝트 일정관리
+  #### 프로젝트 진행사항을 칸반보드와 이슈티켓으로 관리했습니다.
+  <img width="1000px" alt="스크린샷 2022-08-04 09 10 46" src="https://user-images.githubusercontent.com/89829943/184055328-0252f2eb-676a-4211-9153-5165b8982f56.png">
+
+
 
