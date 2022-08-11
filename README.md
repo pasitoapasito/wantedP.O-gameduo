@@ -223,5 +223,20 @@
 - #### 🚀 ERD 구조
   <img width="1000px" alt="스크린샷 2022-08-11 09 23 13" src="https://user-images.githubusercontent.com/89829943/184044960-1e7cb945-e5b3-418f-931d-23b1d14cab7d.png">
 
+<br> 
 
+> **API Docs**
+- #### 🌈 API 명세서
+  |ID|Feature|Method|URL|
+  |---|----------|----|----|
+  |1|유저 회원가입|POST|api/users/signup|
+  |2|유저 로그인|POST|api/users/signin|
+  |3|유저 로그아웃|POST|api/users/signout|
+  |4|유저 토큰 재발급|POST|api/users/token/refresh|
+  |5|유저 정보조회|GET|api/users/search/<str:nickname>|
+  |6|보스레이드 입장(시작)|POST|api/raids/enter|
+  |7|보스레이드 종료|PATCH|api/raids/<int:raid_history_id>/end|
+  |8|보스레이드 상태조회|GET|api/raids/status|
+  |9|보스레이드 랭킹조회|GET|api/raids/ranking|
+ 
 
