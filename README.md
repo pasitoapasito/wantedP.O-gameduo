@@ -281,7 +281,8 @@
 > **Deploy**
 - #### 🏖 프로젝트 배포
   #### Docker, Nginx, Gunicorn을 사용하여 AWS EC2 서버에 배포했으며, 비용 등의 이유로 현재는 배포를 중단했습니다.
-  <img width="1000px" alt="스크린샷 2022-08-11 11 51 15" src="https://user-images.githubusercontent.com/89829943/184057207-a546d233-f5ce-4046-b801-5a70b7907012.png">
+  <img width="1000px" alt="스크린샷 2022-08-11 11 56 07" src="https://user-images.githubusercontent.com/89829943/184057633-fac6bfdd-ff66-4c47-b737-5ff65e3ebbe1.png">
+
 
 <br> 
 
