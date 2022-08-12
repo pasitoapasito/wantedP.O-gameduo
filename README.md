@@ -59,7 +59,7 @@
 ## Personal Project
 
 > **Period**
-- #### ⚡️ 22.08.01 ~ 22.08.09(1차 기능구현)
+- #### ⚡️ 22.08.01 ~ 22.08.09(기능구현 완료)
 
 <br>
 
@@ -221,7 +221,10 @@
 
 > **Modeling**
 - #### 🚀 ERD 구조
-  <img width="1000px" alt="스크린샷 2022-08-11 09 23 13" src="https://user-images.githubusercontent.com/89829943/184044960-1e7cb945-e5b3-418f-931d-23b1d14cab7d.png">
+  <img width="1000px" alt="스크린샷 2022-08-12 13 11 54" src="https://user-images.githubusercontent.com/89829943/184283727-7ccbd9ac-2e3c-419d-85d0-4a4e7271f0f9.png">
+
+
+
 
 <br> 
 
