@@ -34,7 +34,7 @@ class UserRefreshToken(APITestCase):
     maxDiff = None
     
     """
-    테스트 데이터 셋업(유저 회원가입 정보/로그인 정보)
+    테스트 데이터 셋업(유저 회원가입/로그인 정보)
     """
     
     def setUp(self):
