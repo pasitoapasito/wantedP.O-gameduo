@@ -31,7 +31,7 @@ class UserSignInTest(APITestCase):
     maxDiff = None
     
     """
-    테스트 데이터 셋업
+    테스트 데이터 셋업(유저 정보)
     """
     
     @classmethod
