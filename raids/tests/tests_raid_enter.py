@@ -69,7 +69,7 @@ class BossRaidEnterSuccessTest(APITestCase):
                 'msg'       : '보스레이드에 입장했습니다.',
                 'is_entered': True,
                 'result': {
-                    'id'        : 2,
+                    'id'        : RaidHistory.objects.get(users=self.user).id,
                     'nickname'  : 'userTest',
                     'level'     : 0,
                     'status'    : 'in_progress',
