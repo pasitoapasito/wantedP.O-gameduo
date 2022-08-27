@@ -30,12 +30,18 @@ class UserSignOutView(APIView):
         user = request.user
         
         """
-        해당 유저의 리프레시 토큰 정보를 가져옵니다.
+        입력한 리프레시 토큰의 정보를 가져옵니다.
         """
         try:
             refresh = RefreshToken(request.data['refesh_token'])
         except:
             return Response({'detail': '유효하지 않거나 만료된 토큰입니다.'}, status=400)
+        
+        """
+        입력한 리프레시 토큰이 본인(API 요청자)의 토큰인지를 확인합니다.
+        """
+        if not user.id == refresh['user_id']:
+            return Response({'detail': '유저의 토큰정보가 유효하지 않습니다.'}, status=400)
         
         """
         해당 유저의 발급된 모든 리프레시 토큰을 사용 제한합니다.
