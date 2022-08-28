@@ -14,7 +14,7 @@ class BossRaidEndView(APIView):
     """
     Assignee: 김동규
     
-    query param: raid_history_id
+    path param: raid_history_id
     request body: level(필수값)
     return: json
     detail:
