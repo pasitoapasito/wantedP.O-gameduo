@@ -15,7 +15,7 @@ class UserSearchView(APIView):
     """
     Assignee: 김동규
     
-    query param: nickname
+    path param: nickname
     query string: offset, limit
     return: json
     detail:
