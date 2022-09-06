@@ -12,7 +12,7 @@
 > **Index**
 - [Team Project](#team-project)
 - [Environments](#environments)
-- [Personal Project](#personal-project)
+- [Project](#project)
 - [Etc](#etc)
 
 <br>
@@ -56,10 +56,10 @@
 <hr>
 
 
-## Personal Project
+## Project
 
 > **Period**
-- #### ⚡️ 22.08.01 ~ 22.08.09(기능구현 완료)
+- #### ⚡️ 22.08.01 ~ 22.08.09
 
 <br>
 
@@ -225,24 +225,11 @@
   <img width="1000px" alt="스크린샷 2022-08-13 09 06 46" src="https://user-images.githubusercontent.com/89829943/184458741-9d14504d-1223-4606-bd92-1f961ccaf108.png">
 
 
-
-
-
 <br> 
 
 > **API Docs**
 - #### 🌈 API 명세서
-  |ID|Feature|Method|URL|
-  |---|----------|----|----|
-  |1|유저 회원가입|POST|api/users/signup|
-  |2|유저 로그인|POST|api/users/signin|
-  |3|유저 로그아웃|POST|api/users/signout|
-  |4|유저 토큰 재발급|POST|api/users/token/refresh|
-  |5|유저 정보조회|GET|api/users/search/\<str:nickname\>|
-  |6|보스레이드 입장(시작)|POST|api/raids/enter|
-  |7|보스레이드 종료|PATCH|api/raids/\<int:raid_history_id\>/end|
-  |8|보스레이드 상태조회|GET|api/raids/status|
-  |9|보스레이드 랭킹조회|GET|api/raids/ranking|
+  <img width="1000px" alt="스크린샷 2022-09-06 11 13 41" src="https://user-images.githubusercontent.com/89829943/188532623-a7a4c86c-d4fb-4d6b-a8d8-a9387f8284e3.png">
  
 - #### ✨ Swagger UI
   #### ```✔️ 유저 회원가입``` 
