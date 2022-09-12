@@ -280,8 +280,15 @@
 
 > **Test**
 - #### 🚦 테스트코드 작성
-  #### 현재 테스트코드 작성중
+  #### 전체 테스트코드: 56 cases
+  <img width="1000px" alt="스크린샷 2022-09-12 11 30 50" src="https://user-images.githubusercontent.com/89829943/189563604-88f5a483-066f-4059-a6d2-52c7d65812d5.png">
+  <img width="1000px" alt="스크린샷 2022-09-12 11 07 07" src="https://user-images.githubusercontent.com/89829943/189563635-74d65a29-107b-424f-966a-db57941e17dc.png">
+  <img width="1000px" alt="스크린샷 2022-09-12 11 10 33" src="https://user-images.githubusercontent.com/89829943/189563645-f57d988f-6530-440a-b274-48648037b4f7.png">
   
+  #### 테스트 커버리지: 97%
+  <img width="1000px" alt="스크린샷 2022-09-12 11 29 46" src="https://user-images.githubusercontent.com/89829943/189563704-ef7c231c-abd0-4e0a-b953-5c3b43818359.png">
+  
+
 <br> 
 
 > **Issue**
